@@ -1,0 +1,12 @@
+[Bb]in/
+[Oo]bj/
+[Ww]orking/
+*.suo
+*.user
+_ReSharper.*
+*.ReSharper.user
+*.resharper.user
+
+#NuGet
+packages
+!packages/repositories.config
