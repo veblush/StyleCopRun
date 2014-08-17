@@ -206,15 +206,15 @@ namespace StyleCopRun
             var violationCount = 0;
             styleCop.ViolationEncountered += (sender, e) =>
             {
-                Console.WriteLine("{0}({1}): {2} {3}",
+                Console.Error.WriteLine("{0}({1}): {2} {3}",
                     e.SourceCode.Path, e.LineNumber, e.Violation.Rule.CheckId, e.Message);
 
                 violationCount += 1;
             };
             styleCop.Start(new[] { project }, true);
 
-            Console.WriteLine("");
-            Console.WriteLine("{0} Violations found", violationCount);
+            Console.Error.WriteLine("");
+            Console.Error.WriteLine("{0} Violations found", violationCount);
 
             return violationCount > 0 ? 2 : 0;
         }
@@ -237,7 +237,7 @@ namespace StyleCopRun
             var violationCount = 0;
             styleCop.ViolationEncountered += (sender, e) =>
             {
-                Console.WriteLine("{0}({1}): {2} {3}",
+                Console.Error.WriteLine("{0}({1}): {2} {3}",
                     fileMap[e.SourceCode.Path], e.LineNumber, e.Violation.Rule.CheckId, e.Message);
 
                 violationCount += 1;
@@ -245,8 +245,8 @@ namespace StyleCopRun
 
             styleCop.Start(new[] { project }, true);
 
-            Console.WriteLine("");
-            Console.WriteLine("{0} Violations found", violationCount);
+            Console.Error.WriteLine("");
+            Console.Error.WriteLine("{0} Violations found", violationCount);
 
             return violationCount > 0 ? 2 : 0;
         }
@@ -270,7 +270,7 @@ namespace StyleCopRun
             if (_options.Excludes != null && _options.Excludes.Count > 0)
             {
                 if (_options.Excludes.Any(i => Regex.Match(path, i, RegexOptions.IgnoreCase).Success))
-                    return true;
+                    return false;
             }
             
             return true;
